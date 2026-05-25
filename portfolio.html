@@ -169,7 +169,7 @@ body {
 }
 
 /* placeholder colors per project */
-.thumb-1 { background: linear-gradient(135deg, #1C1C2E 0%, #2D1B69 50%, #11998e 100%); }
+.thumb-1 { background: #0D0D0D; position: relative; }
 .thumb-2 { background: linear-gradient(135deg, #0D0D0D 0%, #F03010 100%); }
 .thumb-3 { background: linear-gradient(135deg, #1C6EFF 0%, #0D0D0D 100%); }
 .thumb-4 { background: linear-gradient(135deg, #2D2D2D 0%, #F4EFE4 100%); }
@@ -190,6 +190,18 @@ body {
   pointer-events: none;
   user-select: none;
 }
+
+/* Carbon slider */
+.carbon-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.carbon-slide.active { opacity: 1; }
 
 .project-info {
   padding: 28px 32px 32px;
@@ -326,7 +338,11 @@ body {
     <div class="project-card">
       <div class="project-thumb">
         <div class="project-thumb-inner thumb-1">
-          <div class="thumb-label">Placeholder</div>
+          <img class="carbon-slide active" src="CARBON MOSAICO.png" alt="Carbon Mosaico">
+          <img class="carbon-slide" src="CARBON COVER.png" alt="Carbon Cover">
+          <img class="carbon-slide" src="CARBON 1.png" alt="Carbon 1">
+          <img class="carbon-slide" src="CARBON 2.png" alt="Carbon 2">
+          <img class="carbon-slide" src="CARBON 3.png" alt="Carbon 3">
         </div>
       </div>
       <div class="project-info">
@@ -334,8 +350,8 @@ body {
           <span class="project-num">01</span>
           <span class="project-tag" id="tag-1">Branding</span>
         </div>
-        <h2 class="project-title" id="title-1">Brand Identity</h2>
-        <p class="project-desc" id="desc-1">Full brand system for a São Paulo-based startup — strategy, visual identity and brand guidelines.</p>
+        <h2 class="project-title" id="title-1">Carbon</h2>
+        <p class="project-desc" id="desc-1">Identidade visual completa para a marca Carbon — estratégia, identidade e manual de marca.</p>
       </div>
     </div>
 
@@ -409,8 +425,8 @@ const translations = {
     'hero-sub':    'Selected projects across branding, social media, web and performance.',
     'nav-back':    '← Home',
     'tag-1':       'Branding',
-    'title-1':     'Brand Identity',
-    'desc-1':      'Full brand system for a São Paulo-based startup — strategy, visual identity and brand guidelines.',
+    'title-1':     'Carbon',
+    'desc-1':      'Full brand identity for Carbon — strategy, visual identity and brand guidelines.',
     'tag-2':       'Social Media',
     'title-2':     'Social Direction',
     'desc-2':      'Content strategy and visual direction for a retail brand — creative, copy and monthly planning.',
@@ -428,8 +444,8 @@ const translations = {
     'hero-sub':    'Projetos selecionados em branding, redes sociais, web e performance.',
     'nav-back':    '← Início',
     'tag-1':       'Branding',
-    'title-1':     'Identidade Visual',
-    'desc-1':      'Sistema completo de marca para uma startup em São Paulo — estratégia, identidade visual e manual de marca.',
+    'title-1':     'Carbon',
+    'desc-1':      'Identidade visual completa para a marca Carbon — estratégia, identidade e manual de marca.',
     'tag-2':       'Redes Sociais',
     'title-2':     'Direção de Social',
     'desc-2':      'Estratégia de conteúdo e direção visual para uma marca de varejo — criativo, copy e planejamento mensal.',
@@ -443,6 +459,17 @@ const translations = {
     'footer-policy': '(Política de Privacidade)',
   }
 };
+
+// Carbon image slideshow
+(function() {
+  const slides = document.querySelectorAll('.carbon-slide');
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 3500);
+})();
 
 function setLang(lang) {
   const t = translations[lang];
