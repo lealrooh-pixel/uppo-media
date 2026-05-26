@@ -191,17 +191,6 @@ body {
   user-select: none;
 }
 
-/* Carbon slider */
-.carbon-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-.carbon-slide.active { opacity: 1; }
 
 .project-info {
   padding: 28px 32px 32px;
@@ -338,11 +327,7 @@ body {
     <div class="project-card" onclick="location.href='carbon.html'" style="cursor:pointer;">
       <div class="project-thumb">
         <div class="project-thumb-inner thumb-1">
-          <img class="carbon-slide active" src="CARBON MOSAICO.png" alt="Carbon Mosaico">
-          <img class="carbon-slide" src="CARBON COVER.png" alt="Carbon Cover">
-          <img class="carbon-slide" src="CARBON 1.png" alt="Carbon 1">
-          <img class="carbon-slide" src="CARBON 2.png" alt="Carbon 2">
-          <img class="carbon-slide" src="CARBON 3.png" alt="Carbon 3">
+          <img src="CARBON MOSAICO.png" alt="Carbon Mosaico" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
       </div>
       <div class="project-info">
@@ -462,16 +447,6 @@ const translations = {
 
 document.addEventListener('DOMContentLoaded', () => setLang('en'));
 
-// Carbon image slideshow
-(function() {
-  const slides = document.querySelectorAll('.carbon-slide');
-  let current = 0;
-  setInterval(() => {
-    slides[current].classList.remove('active');
-    current = (current + 1) % slides.length;
-    slides[current].classList.add('active');
-  }, 3500);
-})();
 
 function setLang(lang) {
   const t = translations[lang];
